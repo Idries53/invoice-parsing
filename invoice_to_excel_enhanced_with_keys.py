@@ -134,8 +134,8 @@ def parse_pdf_with_llama(pdf_file):
             
             docs = parser.parse(temp_file.name)
             
-            if docs and len(docs) > 0:
-                return docs[0].text
+            if docs and hasattr(docs, 'text') and docs.text:
+                return docs.text
             else:
                 st.error("❌ No text extracted from PDF")
                 return None
